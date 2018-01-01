@@ -118,6 +118,10 @@ app.on('login', (event, webContents, request, authInfo, callback) => {
   }
 });
 
+app.on('browser-window-blur', () => {
+    mainWindow.hide();
+});
+
 if (appArgs.singleInstance) {
   const shouldQuit = app.makeSingleInstance(() => {
     // Someone tried to run a second instance, we should focus our window.

@@ -17,9 +17,13 @@ function createTrayIcon(inpOptions, mainWindow) {
 
   if (options.tray) {
     const iconPath = getAppIcon();
+    var nodeConsole = require('console');
+    var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
+    myConsole.log("iconPath = " + iconPath);
     const nimage = nativeImage.createFromPath(iconPath);
+    nimage.setTemplateImage(true); 
     const appIcon = new Tray(nimage);
-
+ 
     const onClick = () => {
       if (mainWindow.isVisible()) {
         mainWindow.hide();
@@ -73,7 +77,7 @@ function createTrayIcon(inpOptions, mainWindow) {
     }
 
     appIcon.setToolTip(options.name);
-    appIcon.setContextMenu(contextMenu);
+    //appIcon.setContextMenu(contextMenu);
 
     return appIcon;
   }
